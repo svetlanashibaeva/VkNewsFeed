@@ -12,6 +12,8 @@
 		D313EEDE292BAFA400961B15 /* AuthViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D313EEDD292BAFA400961B15 /* AuthViewController.storyboard */; };
 		D313EEE0292CC73D00961B15 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D313EEDF292CC73D00961B15 /* FeedViewController.swift */; };
 		D313EEE2292CC76200961B15 /* FeedViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D313EEE1292CC76200961B15 /* FeedViewController.storyboard */; };
+		D313EEE6292CDFE000961B15 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D313EEE5292CDFE000961B15 /* NetworkService.swift */; };
+		D313EEE8292CE0AF00961B15 /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = D313EEE7292CE0AF00961B15 /* Api.swift */; };
 		D3E0D34C292B8D88009E9A27 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3E0D34B292B8D88009E9A27 /* AppDelegate.swift */; };
 		D3E0D34E292B8D88009E9A27 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3E0D34D292B8D88009E9A27 /* SceneDelegate.swift */; };
 		D3E0D350292B8D88009E9A27 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3E0D34F292B8D88009E9A27 /* AuthViewController.swift */; };
@@ -26,6 +28,8 @@
 		D313EEDD292BAFA400961B15 /* AuthViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AuthViewController.storyboard; sourceTree = "<group>"; };
 		D313EEDF292CC73D00961B15 /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		D313EEE1292CC76200961B15 /* FeedViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FeedViewController.storyboard; sourceTree = "<group>"; };
+		D313EEE5292CDFE000961B15 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		D313EEE7292CE0AF00961B15 /* Api.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Api.swift; sourceTree = "<group>"; };
 		D3E0D348292B8D88009E9A27 /* VkNewsFeed.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VkNewsFeed.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3E0D34B292B8D88009E9A27 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D3E0D34D292B8D88009E9A27 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -69,6 +73,8 @@
 			isa = PBXGroup;
 			children = (
 				D313EEDA292BAD2300961B15 /* AuthService.swift */,
+				D313EEE5292CDFE000961B15 /* NetworkService.swift */,
+				D313EEE7292CE0AF00961B15 /* Api.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -244,6 +250,8 @@
 				D3E0D34C292B8D88009E9A27 /* AppDelegate.swift in Sources */,
 				D313EEE0292CC73D00961B15 /* FeedViewController.swift in Sources */,
 				D3E0D34E292B8D88009E9A27 /* SceneDelegate.swift in Sources */,
+				D313EEE6292CDFE000961B15 /* NetworkService.swift in Sources */,
+				D313EEE8292CE0AF00961B15 /* Api.swift in Sources */,
 				D313EEDB292BAD2300961B15 /* AuthService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

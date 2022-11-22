@@ -14,12 +14,16 @@ protocol AuthServiceDelegate: class {
     func authServiceSignInDidFail()
 }
 
-class AuthService: NSObject {
+final class AuthService: NSObject {
     
     private let appId = "51482472"
     private let vkSdk: VKSdk
     
     weak var delegate: AuthServiceDelegate?
+    
+    var token: String? {
+        return VKSdk.accessToken().accessToken
+    }
     
     override init() {
         vkSdk = VKSdk.initialize(withAppId: appId)
