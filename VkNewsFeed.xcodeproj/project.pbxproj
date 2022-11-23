@@ -14,6 +14,8 @@
 		D313EEE2292CC76200961B15 /* FeedViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D313EEE1292CC76200961B15 /* FeedViewController.storyboard */; };
 		D313EEE6292CDFE000961B15 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D313EEE5292CDFE000961B15 /* NetworkService.swift */; };
 		D313EEE8292CE0AF00961B15 /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = D313EEE7292CE0AF00961B15 /* Api.swift */; };
+		D313EEEB292E009D00961B15 /* FeedResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D313EEEA292E009D00961B15 /* FeedResponse.swift */; };
+		D313EEED292E039B00961B15 /* NetworkDataFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = D313EEEC292E039B00961B15 /* NetworkDataFetcher.swift */; };
 		D3E0D34C292B8D88009E9A27 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3E0D34B292B8D88009E9A27 /* AppDelegate.swift */; };
 		D3E0D34E292B8D88009E9A27 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3E0D34D292B8D88009E9A27 /* SceneDelegate.swift */; };
 		D3E0D350292B8D88009E9A27 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3E0D34F292B8D88009E9A27 /* AuthViewController.swift */; };
@@ -30,6 +32,8 @@
 		D313EEE1292CC76200961B15 /* FeedViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FeedViewController.storyboard; sourceTree = "<group>"; };
 		D313EEE5292CDFE000961B15 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		D313EEE7292CE0AF00961B15 /* Api.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Api.swift; sourceTree = "<group>"; };
+		D313EEEA292E009D00961B15 /* FeedResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedResponse.swift; sourceTree = "<group>"; };
+		D313EEEC292E039B00961B15 /* NetworkDataFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDataFetcher.swift; sourceTree = "<group>"; };
 		D3E0D348292B8D88009E9A27 /* VkNewsFeed.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VkNewsFeed.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3E0D34B292B8D88009E9A27 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D3E0D34D292B8D88009E9A27 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -72,9 +76,11 @@
 		D313EEDC292BAD2900961B15 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				D313EEE9292E008E00961B15 /* Models */,
 				D313EEDA292BAD2300961B15 /* AuthService.swift */,
 				D313EEE5292CDFE000961B15 /* NetworkService.swift */,
 				D313EEE7292CE0AF00961B15 /* Api.swift */,
+				D313EEEC292E039B00961B15 /* NetworkDataFetcher.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -95,6 +101,14 @@
 				D313EEDD292BAFA400961B15 /* AuthViewController.storyboard */,
 			);
 			path = Auth;
+			sourceTree = "<group>";
+		};
+		D313EEE9292E008E00961B15 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				D313EEEA292E009D00961B15 /* FeedResponse.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		D3E0D33F292B8D88009E9A27 = {
@@ -246,11 +260,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D313EEEB292E009D00961B15 /* FeedResponse.swift in Sources */,
 				D3E0D350292B8D88009E9A27 /* AuthViewController.swift in Sources */,
 				D3E0D34C292B8D88009E9A27 /* AppDelegate.swift in Sources */,
 				D313EEE0292CC73D00961B15 /* FeedViewController.swift in Sources */,
 				D3E0D34E292B8D88009E9A27 /* SceneDelegate.swift in Sources */,
 				D313EEE6292CDFE000961B15 /* NetworkService.swift in Sources */,
+				D313EEED292E039B00961B15 /* NetworkDataFetcher.swift in Sources */,
 				D313EEE8292CE0AF00961B15 /* Api.swift in Sources */,
 				D313EEDB292BAD2300961B15 /* AuthService.swift in Sources */,
 			);

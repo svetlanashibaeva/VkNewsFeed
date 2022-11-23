@@ -33,7 +33,7 @@ final class AuthService: NSObject {
     }
     
     func wakeUpSession() {
-        let scope = ["offline"]
+        let scope = ["wall", "friends"]
         VKSdk.wakeUpSession(scope) { state, error in
             switch state {
             case .initialized:
