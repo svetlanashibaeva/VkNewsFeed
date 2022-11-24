@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol NewsfeedDisplayLogic: class {
+protocol NewsfeedDisplayLogic: AnyObject {
     func displayData(viewModel: Newsfeed.Model.ViewModel.ViewModelData)
 }
 
@@ -18,6 +18,8 @@ class NewsfeedViewController: UIViewController, NewsfeedDisplayLogic {
     
     var interactor: NewsfeedBusinessLogic?
     var router: (NSObjectProtocol & NewsfeedRoutingLogic)?
+    
+    private var feedViewModel = FeedViewModel.init(cells: [])
     
     // MARK: Setup
     
@@ -44,23 +46,19 @@ class NewsfeedViewController: UIViewController, NewsfeedDisplayLogic {
         
         tableView.register(UINib(nibName: "NewsfeedCell", bundle: nil), forCellReuseIdentifier: NewsfeedCell.reuseId)
         setup()
+        interactor?.makeRequest(request: Newsfeed.Model.Request.RequestType.getNewsfeed)
     }
     
     func displayData(viewModel: Newsfeed.Model.ViewModel.ViewModelData) {
         switch viewModel {
-        case .some:
-            print(".some VC")
-        case .displayNewsfeed:
-            print(".displayNewsfeed VC")
+        case .displayNewsfeed(feedViewModel: let feedViewModel):
+            self.feedViewModel = feedViewModel
+            tableView.reloadData()
         }
     }
 }
 
 extension NewsfeedViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        interactor?.makeRequest(request: .getFeed)
-    }
-    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 212
     }
@@ -68,12 +66,13 @@ extension NewsfeedViewController: UITableViewDelegate {
 
 extension NewsfeedViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return feedViewModel.cells.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: NewsfeedCell.reuseId, for: indexPath) as! NewsfeedCell
-        
+        let cellViewModel = feedViewModel.cells[indexPath.row]
+        cell.set(viewModel: cellViewModel)
         return cell
     }
 }

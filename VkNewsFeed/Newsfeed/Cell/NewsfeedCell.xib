@@ -139,7 +139,7 @@
                 <outlet property="iconImageView" destination="uQ6-TJ-Y3c" id="lzV-Bx-EMK"/>
                 <outlet property="likesLabel" destination="NBe-YS-2Pm" id="o8c-zJ-fdA"/>
                 <outlet property="nameLabel" destination="vwv-WR-K3P" id="6qG-WL-aHo"/>
-                <outlet property="postLabel" destination="NBe-YS-2Pm" id="we3-to-GCC"/>
+                <outlet property="postLabel" destination="Njw-TL-CGh" id="BY2-hQ-pkw"/>
                 <outlet property="sharesLabel" destination="ce5-c7-6qo" id="grC-Or-McP"/>
                 <outlet property="viewsLabel" destination="MEX-J7-7iB" id="QrO-Ri-seN"/>
             </connections>
