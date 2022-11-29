@@ -43,9 +43,13 @@ class NewsfeedViewController: UIViewController, NewsfeedDisplayLogic {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setup()
         
         tableView.register(UINib(nibName: "NewsfeedCell", bundle: nil), forCellReuseIdentifier: NewsfeedCell.reuseId)
-        setup()
+        tableView.separatorStyle = .none
+        tableView.backgroundColor = .clear
+        view.backgroundColor = .lightGray
+        
         interactor?.makeRequest(request: Newsfeed.Model.Request.RequestType.getNewsfeed)
     }
     
@@ -60,7 +64,8 @@ class NewsfeedViewController: UIViewController, NewsfeedDisplayLogic {
 
 extension NewsfeedViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 212
+        let cellViewModel = feedViewModel.cells[indexPath.row]
+        return cellViewModel.sizes.totalHeight
     }
 }
 
