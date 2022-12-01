@@ -79,6 +79,13 @@ extension NewsfeedViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: NewsfeedCodeCell.reuseId, for: indexPath) as! NewsfeedCodeCell
         let cellViewModel = feedViewModel.cells[indexPath.row]
         cell.set(viewModel: cellViewModel)
+        cell.delegate = self
         return cell
+    }
+}
+
+extension NewsfeedViewController: NewsfeedCodeCellDelegate {
+    func revealPost(for cell: NewsfeedCodeCell) {
+        print("123")
     }
 }

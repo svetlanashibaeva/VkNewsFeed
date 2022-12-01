@@ -7,9 +7,15 @@
 
 import UIKit
 
+protocol NewsfeedCodeCellDelegate: AnyObject {
+    func revealPost(for cell: NewsfeedCodeCell)
+}
+
 final class NewsfeedCodeCell: UITableViewCell {
     
     static let reuseId = "NewsfeedCodeCell"
+    
+    weak var delegate: NewsfeedCodeCellDelegate?
     
     // первый слой
     let cardView = UIView()
@@ -19,6 +25,7 @@ final class NewsfeedCodeCell: UITableViewCell {
     let postLabel = UILabel()
     let postImageView = WebImageView()
     let bottomView = UIView()
+    let moreTextButton = UIButton()
     
     // третий слой на topView
     let iconImageView = WebImageView()
@@ -41,6 +48,11 @@ final class NewsfeedCodeCell: UITableViewCell {
     let sharesLabel = UILabel()
     let viewsLabel = UILabel()
     
+    override func prepareForReuse() {
+        iconImageView.set(imageURL: nil)
+        postImageView.set(imageURL: nil)
+    }
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
@@ -49,6 +61,11 @@ final class NewsfeedCodeCell: UITableViewCell {
         
         cardView.layer.cornerRadius = 10
         cardView.clipsToBounds = true
+        
+        iconImageView.layer.cornerRadius = Constants.topViewHeight / 2
+        iconImageView.clipsToBounds = true
+        
+        moreTextButton.addTarget(self, action: #selector(moreTextButtonTouch), for: .touchUpInside)
         
         configure()
         addSubviews()
@@ -59,6 +76,9 @@ final class NewsfeedCodeCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    @objc func moreTextButtonTouch() {
+        delegate?.revealPost(for: self)
+    }
     
     func set(viewModel: FeedCellViewModel) {
         iconImageView.set(imageURL: viewModel.iconUrlString)
@@ -69,10 +89,11 @@ final class NewsfeedCodeCell: UITableViewCell {
         commentsLabel.text = viewModel.comments
         sharesLabel.text = viewModel.shares
         viewsLabel.text = viewModel.views
-        
+
         postLabel.frame = viewModel.sizes.postLabelFrame
         postImageView.frame = viewModel.sizes.attachmentFrame
         bottomView.frame = viewModel.sizes.bottomViewFrame
+        moreTextButton.frame = viewModel.sizes.moreTextButtonFrame
         
         if let photoAttachment = viewModel.photoAttachment {
             postImageView.set(imageURL: photoAttachment.photoUrlString)
@@ -119,6 +140,12 @@ private extension NewsfeedCodeCell {
         viewsLabel.textColor = #colorLiteral(red: 0.5768421292, green: 0.6187390685, blue: 0.664434731, alpha: 1)
         viewsLabel.font = UIFont.systemFont(ofSize: 14, weight: .medium)
         viewsLabel.lineBreakMode = .byClipping
+        
+        moreTextButton.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: .medium)
+        moreTextButton.setTitleColor(.blue, for: .normal)
+        moreTextButton.contentHorizontalAlignment = .left
+        moreTextButton.contentVerticalAlignment = .center
+        moreTextButton.setTitle("Показать полностью...", for: .normal)
     }
     
     func addSubviews() {
@@ -127,11 +154,10 @@ private extension NewsfeedCodeCell {
         topView.translatesAutoresizingMaskIntoConstraints = false
         
         addSubview(cardView)
-    
-        cardView.addSubview(topView)
-        cardView.addSubview(postLabel)
-        cardView.addSubview(postImageView)
-        cardView.addSubview(bottomView)
+        
+        [topView, postLabel, postImageView, bottomView, moreTextButton].forEach {
+            cardView.addSubview($0)
+        }
         
         [iconImageView, nameLabel, dateLabel].forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
