@@ -44,7 +44,7 @@ class NewsfeedPresenter: NewsfeedPresentationLogic {
     private func cellViewModel(from feedItem: FeedItem, profiles: [Profile], groups: [Group], revealedPostIds: [Int]) -> FeedViewModel.Cell {
         
         let profile = self.profile(for: feedItem.sourceId, profiles: profiles, groups: groups)
-        let photoAttachment = self.photoAttachement(feedItem: feedItem)
+        let photoAttachments = self.photoAttachements(feedItem: feedItem)
         let date = Date(timeIntervalSince1970: feedItem.date)
         let dateTitle = dateFormatter.string(from: date)
         
@@ -52,7 +52,7 @@ class NewsfeedPresenter: NewsfeedPresentationLogic {
         
         let sizes = cellLayoutCalculator.sizes(
             postText: feedItem.text,
-            photoAttachment: photoAttachment,
+            photoAttachments: photoAttachments,
             isFullSizedPost: isFullSizes
         )
 
@@ -66,7 +66,7 @@ class NewsfeedPresenter: NewsfeedPresentationLogic {
             comments: String(feedItem.comments?.count ?? 0),
             shares: String(feedItem.reposts?.count ?? 0),
             views: String(feedItem.views?.count ?? 0),
-            photoAttachment: photoAttachment,
+            photoAttachments: photoAttachments,
             sizes: sizes
         )
     }
@@ -91,6 +91,18 @@ class NewsfeedPresenter: NewsfeedPresentationLogic {
             width: firstPhoto.width,
             height: firstPhoto.height
         )
+    }
+    
+    private func photoAttachements(feedItem: FeedItem) -> [FeedViewModel.FeedCellPhotoAttachment] {
+        guard let attachments = feedItem.attachments else { return [] }
+        return attachments.compactMap({ (attachment) -> FeedViewModel.FeedCellPhotoAttachment? in
+            guard let photo = attachment.photo else { return nil }
+            return FeedViewModel.FeedCellPhotoAttachment.init(
+                photoUrlString: photo.srcBig,
+                width: photo.width,
+                height: photo.height
+            )
+        })
     }
     
 }

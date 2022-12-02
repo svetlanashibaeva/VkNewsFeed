@@ -34,6 +34,8 @@
 		D3F7BA5829375ED0004B332D /* NewsfeedCodeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F7BA5729375ED0004B332D /* NewsfeedCodeCell.swift */; };
 		D3F7BA5A29376761004B332D /* Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F7BA5929376761004B332D /* Constraints.swift */; };
 		D3F7BA5C2937807E004B332D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F7BA5B2937807E004B332D /* Constants.swift */; };
+		D3F7BA5F293A185B004B332D /* GalleryCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F7BA5E293A185B004B332D /* GalleryCollectionView.swift */; };
+		D3F7BA61293A1999004B332D /* GalleryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F7BA60293A1999004B332D /* GalleryCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -67,6 +69,8 @@
 		D3F7BA5729375ED0004B332D /* NewsfeedCodeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsfeedCodeCell.swift; sourceTree = "<group>"; };
 		D3F7BA5929376761004B332D /* Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constraints.swift; sourceTree = "<group>"; };
 		D3F7BA5B2937807E004B332D /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		D3F7BA5E293A185B004B332D /* GalleryCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryCollectionView.swift; sourceTree = "<group>"; };
+		D3F7BA60293A1999004B332D /* GalleryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryCollectionViewCell.swift; sourceTree = "<group>"; };
 		EC7A7E48967FE75CC034227D /* Pods_VkNewsFeed.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VkNewsFeed.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -131,6 +135,7 @@
 		D32DCB69292E386000847377 /* Newsfeed */ = {
 			isa = PBXGroup;
 			children = (
+				D3F7BA5D293A182B004B332D /* GalleryView */,
 				D32DCB7A292F5FC700847377 /* Cell */,
 				D32DCB6A292E387A00847377 /* NewsfeedPresenter.swift */,
 				D32DCB6B292E387A00847377 /* NewsfeedWorker.swift */,
@@ -197,6 +202,15 @@
 				D3F7BA5929376761004B332D /* Constraints.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		D3F7BA5D293A182B004B332D /* GalleryView */ = {
+			isa = PBXGroup;
+			children = (
+				D3F7BA5E293A185B004B332D /* GalleryCollectionView.swift */,
+				D3F7BA60293A1999004B332D /* GalleryCollectionViewCell.swift */,
+			);
+			path = GalleryView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -320,6 +334,7 @@
 				D3F7BA5629361C25004B332D /* String + Height.swift in Sources */,
 				D32DCB75292E387A00847377 /* NewsfeedViewController.swift in Sources */,
 				D3E0D350292B8D88009E9A27 /* AuthViewController.swift in Sources */,
+				D3F7BA61293A1999004B332D /* GalleryCollectionViewCell.swift in Sources */,
 				D3E0D34C292B8D88009E9A27 /* AppDelegate.swift in Sources */,
 				D32DCB71292E387A00847377 /* NewsfeedPresenter.swift in Sources */,
 				D32DCB73292E387A00847377 /* NewsfeedRouter.swift in Sources */,
@@ -335,6 +350,7 @@
 				D32DCB72292E387A00847377 /* NewsfeedWorker.swift in Sources */,
 				D313EEE8292CE0AF00961B15 /* Api.swift in Sources */,
 				D313EEDB292BAD2300961B15 /* AuthService.swift in Sources */,
+				D3F7BA5F293A185B004B332D /* GalleryCollectionView.swift in Sources */,
 				D32DCB7C292F5FDF00847377 /* NewsfeedCell.swift in Sources */,
 				D32DCB76292E387A00847377 /* NewsfeedInteractor.swift in Sources */,
 			);

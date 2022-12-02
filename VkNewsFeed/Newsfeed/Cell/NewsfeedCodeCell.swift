@@ -26,6 +26,7 @@ final class NewsfeedCodeCell: UITableViewCell {
     let postImageView = WebImageView()
     let bottomView = UIView()
     let moreTextButton = UIButton()
+    let galleryCollectionView = GalleryCollectionView()
     
     // третий слой на topView
     let iconImageView = WebImageView()
@@ -91,15 +92,22 @@ final class NewsfeedCodeCell: UITableViewCell {
         viewsLabel.text = viewModel.views
 
         postLabel.frame = viewModel.sizes.postLabelFrame
-        postImageView.frame = viewModel.sizes.attachmentFrame
         bottomView.frame = viewModel.sizes.bottomViewFrame
         moreTextButton.frame = viewModel.sizes.moreTextButtonFrame
         
-        if let photoAttachment = viewModel.photoAttachment {
+        if let photoAttachment = viewModel.photoAttachments.first, viewModel.photoAttachments.count == 1 {
             postImageView.set(imageURL: photoAttachment.photoUrlString)
             postImageView.isHidden = false
+            galleryCollectionView.isHidden = true
+            postImageView.frame = viewModel.sizes.attachmentFrame
+        } else if viewModel.photoAttachments.count > 1 {
+            galleryCollectionView.frame = viewModel.sizes.attachmentFrame
+            postImageView.isHidden = true
+            galleryCollectionView.isHidden = false
+            galleryCollectionView.set(photos: viewModel.photoAttachments)
         } else {
             postImageView.isHidden = true
+            galleryCollectionView.isHidden = true
         }
     }
 }
@@ -152,10 +160,11 @@ private extension NewsfeedCodeCell {
         
         cardView.translatesAutoresizingMaskIntoConstraints = false
         topView.translatesAutoresizingMaskIntoConstraints = false
+        galleryCollectionView.translatesAutoresizingMaskIntoConstraints = false
         
         contentView.addSubview(cardView)
         
-        [topView, postLabel, postImageView, bottomView, moreTextButton].forEach {
+        [topView, postLabel, postImageView, bottomView, moreTextButton, galleryCollectionView].forEach {
             cardView.addSubview($0)
         }
         
