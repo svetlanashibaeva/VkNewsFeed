@@ -153,7 +153,7 @@ private extension NewsfeedCodeCell {
         cardView.translatesAutoresizingMaskIntoConstraints = false
         topView.translatesAutoresizingMaskIntoConstraints = false
         
-        addSubview(cardView)
+        contentView.addSubview(cardView)
         
         [topView, postLabel, postImageView, bottomView, moreTextButton].forEach {
             cardView.addSubview($0)

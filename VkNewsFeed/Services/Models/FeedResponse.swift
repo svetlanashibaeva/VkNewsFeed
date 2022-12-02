@@ -19,6 +19,7 @@ struct FeedResponse: Decodable {
 
 struct FeedItem: Decodable {
     let sourceId: Int
+    let postId: Int
     let id: Int?
     let text: String?
     let date: Double
