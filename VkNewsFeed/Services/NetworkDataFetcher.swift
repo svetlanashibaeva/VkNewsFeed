@@ -9,15 +9,33 @@ import Foundation
 
 protocol DataFetcher {
     func getFeed(response: @escaping (FeedResponse?) -> Void)
+    func getUser(response: @escaping (UserResponse?) -> Void)
 }
 
 struct NetworkDataFetcher: DataFetcher {
-    let networking: Networking
     
-    init(networking: Networking) {
+    let networking: Networking
+    private let authService: AuthService
+    
+    init(networking: Networking, authService: AuthService = SceneDelegate.shared().authService) {
         self.networking = networking
+        self.authService = authService
     }
     
+    func getUser(response: @escaping (UserResponse?) -> Void) {
+        guard let userId = authService.userId else { return }
+        let params = ["user_ids": userId, "fields": "photo_100"]
+        networking.request(path: Api.user, params: params) { data, error in
+            if let error = error {
+                print("Error received requesting data: \(error.localizedDescription)")
+                response(nil)
+            }
+            
+            let decoded = self.decodeJSON(type: UserResponseWrapped.self, from: data)
+            response(decoded?.response.first)
+        }
+    }
+      
     func getFeed(response: @escaping (FeedResponse?) -> Void) {
         let params = ["filters": "post,photo"]
         networking.request(path: Api.newsFeed, params: params) { data, error in
