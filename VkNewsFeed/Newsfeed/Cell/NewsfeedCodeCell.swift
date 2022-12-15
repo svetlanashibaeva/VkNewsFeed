@@ -22,7 +22,7 @@ final class NewsfeedCodeCell: UITableViewCell {
     
     // второй слой
     let topView = UIView()
-    let postLabel = UILabel()
+    let postLabel = UITextView()
     let postImageView = WebImageView()
     let bottomView = UIView()
     let moreTextButton = UIButton()
@@ -116,9 +116,15 @@ private extension NewsfeedCodeCell {
     func configure() {
         cardView.backgroundColor = .white
         
-        postLabel.numberOfLines = 0
+        postLabel.isScrollEnabled = false
+        postLabel.isSelectable = true
+        postLabel.isUserInteractionEnabled = true
+        postLabel.isEditable = false
         postLabel.font = Constants.postLabelFont
-        postLabel.textColor = .black
+        postLabel.dataDetectorTypes = UIDataDetectorTypes.all
+        postLabel.textColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
+        let padding = postLabel.textContainer.lineFragmentPadding
+        postLabel.textContainerInset = UIEdgeInsets(top: 0, left: -padding, bottom: 0, right: -padding)
         
         nameLabel.font = UIFont.systemFont(ofSize: 14, weight: .medium)
         nameLabel.numberOfLines = 0
