@@ -90,6 +90,12 @@ class NewsfeedViewController: UIViewController, NewsfeedDisplayLogic {
             titleView.set(userViewModel: userViewModel)
         }
     }
+    
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        if scrollView.contentOffset.y > scrollView.contentSize.height / 2 {
+            interactor?.makeRequest(request: .getNextBatch)
+        }
+    }
 }
 
 extension NewsfeedViewController: UITableViewDelegate {
