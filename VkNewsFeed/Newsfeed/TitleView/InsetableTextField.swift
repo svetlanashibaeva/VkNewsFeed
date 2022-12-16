@@ -13,7 +13,7 @@ class InsetableTextField: UITextField {
         super.init(frame: frame)
         
         translatesAutoresizingMaskIntoConstraints = false
-        backgroundColor = .blue
+        backgroundColor = .lightGray
         placeholder = "Поиск..."
         font = UIFont.systemFont(ofSize: 14)
         clearButtonMode = .whileEditing
