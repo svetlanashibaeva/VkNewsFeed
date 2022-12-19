@@ -9,59 +9,33 @@ import UIKit
 
 protocol TitleViewViewModel {
     var photoUrlString: String? { get }
+    var firstName: String? { get }
+    var lastName: String? { get }
 }
 
 class TitleView: UIView {
     
-    private var myTextField = InsetableTextField()
-    
-    private var myAvatarView: WebImageView = {
-        let imageView = WebImageView()
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.backgroundColor = .blue
-        imageView.clipsToBounds = true
-        return imageView
-    }()
-    
+    let myNameLabel = UILabel()
+    let myAvatarView = WebImageView()
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         
         translatesAutoresizingMaskIntoConstraints = false
-        addSubview(myTextField)
-        addSubview(myAvatarView)
-        
+
+        configure()
+        addSubviews()
         makeConstraints()
     }
-    
-    func set(userViewModel: TitleViewViewModel) {
-        myAvatarView.set(imageURL: userViewModel.photoUrlString)
-    }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func makeConstraints() {
-        
-        //myAvatar constraints
-        myAvatarView.anchor(
-            top: topAnchor,
-            leading: nil,
-            bottom: nil,
-            trailing: trailingAnchor,
-            padding: UIEdgeInsets(top: 4, left: 777, bottom: 777, right: 4)
-        )
-        myAvatarView.heightAnchor.constraint(equalTo: myTextField.heightAnchor, multiplier: 1).isActive = true
-        myAvatarView.widthAnchor.constraint(equalTo: myTextField.heightAnchor, multiplier: 1).isActive = true
-        
-        //myTextField constraints
-        myTextField.anchor(
-            top: topAnchor,
-            leading: leadingAnchor,
-            bottom: bottomAnchor,
-            trailing: myAvatarView.leadingAnchor,
-            padding: UIEdgeInsets(top: 4, left: 4, bottom: 4, right: 12)
-        )
+    func set(userViewModel: TitleViewViewModel) {
+        myAvatarView.set(imageURL: userViewModel.photoUrlString)
+        guard let firstName = userViewModel.firstName, let lastName = userViewModel.lastName else { return }
+        myNameLabel.text = firstName + " " + lastName
     }
     
     override var intrinsicContentSize: CGSize {
@@ -73,5 +47,45 @@ class TitleView: UIView {
         
         myAvatarView.layer.cornerRadius = myAvatarView.frame.width / 2
         myAvatarView.layer.masksToBounds = true
+    }
+}
+
+private extension TitleView {
+    func configure() {
+        myNameLabel.translatesAutoresizingMaskIntoConstraints = false
+        myNameLabel.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
+        myNameLabel.textAlignment = .center
+        
+        myAvatarView.translatesAutoresizingMaskIntoConstraints = false
+        myAvatarView.backgroundColor = .blue
+        myAvatarView.clipsToBounds = true
+    }
+    
+    func addSubviews() {
+        addSubview(myNameLabel)
+        addSubview(myAvatarView)
+    }
+    
+    func makeConstraints() {
+        
+        //myAvatar constraints
+        myAvatarView.anchor(
+            top: topAnchor,
+            leading: nil,
+            bottom: nil,
+            trailing: trailingAnchor,
+            padding: UIEdgeInsets(top: 4, left: 777, bottom: 777, right: 4)
+        )
+        myAvatarView.heightAnchor.constraint(equalTo: myNameLabel.heightAnchor, multiplier: 1).isActive = true
+        myAvatarView.widthAnchor.constraint(equalTo: myNameLabel.heightAnchor, multiplier: 1).isActive = true
+        
+        //myTextField constraints
+        myNameLabel.anchor(
+            top: topAnchor,
+            leading: leadingAnchor,
+            bottom: bottomAnchor,
+            trailing: trailingAnchor,
+            padding: UIEdgeInsets(top: 4, left: 4, bottom: 4, right: 4)
+        )
     }
 }

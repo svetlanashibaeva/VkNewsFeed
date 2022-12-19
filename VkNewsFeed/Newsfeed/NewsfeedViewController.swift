@@ -43,11 +43,7 @@ class NewsfeedViewController: UIViewController, NewsfeedDisplayLogic {
         presenter.viewController  = viewController
         router.viewController     = viewController
     }
-    
-    // MARK: Routing
-    
-    
-    
+
     // MARK: View lifecycle
     
     override func viewDidLoad() {
@@ -62,28 +58,16 @@ class NewsfeedViewController: UIViewController, NewsfeedDisplayLogic {
     
     private func setupTable() {
         tableView.contentInset.top = 8
-        tableView.register(UINib(nibName: "NewsfeedCell", bundle: nil), forCellReuseIdentifier: NewsfeedCell.reuseId)
         tableView.register(NewsfeedCodeCell.self, forCellReuseIdentifier: NewsfeedCodeCell.reuseId)
-        
-        tableView.separatorStyle = .none
-        tableView.backgroundColor = .clear
         
         tableView.addSubview(refreshControl)
         tableView.tableFooterView = footerView
     }
     
     private func setupTopBars() {
-        let topBar = UIView(frame: UIApplication.shared.statusBarFrame)
-        topBar.backgroundColor = .white
-        topBar.layer.shadowColor = UIColor.black.cgColor
-        topBar.layer.shadowOpacity = 0.3
-        topBar.layer.shadowOffset = .zero
-        topBar.layer.shadowRadius = 8
-        self.view.addSubview(topBar)
-        
-        self.navigationController?.hidesBarsOnSwipe = true
-        self.navigationController?.navigationBar.shadowImage = UIImage()
-        self.navigationItem.titleView = titleView
+        navigationController?.navigationBar.backgroundColor = .white
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationItem.titleView = titleView
     }
     
     @objc func refresh() {
@@ -139,7 +123,6 @@ extension NewsfeedViewController: UITableViewDataSource {
 
 extension NewsfeedViewController: NewsfeedCodeCellDelegate {
     func revealPost(for cell: NewsfeedCodeCell) {
-        print("123")
         guard let indexPath = tableView.indexPath(for: cell) else { return }
         let cellViewModel = feedViewModel.cells[indexPath.row]
         

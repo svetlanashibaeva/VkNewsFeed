@@ -7,6 +7,33 @@
 
 import UIKit
 
+protocol FeedCellViewModel {
+    var iconUrlString: String { get }
+    var name: String { get }
+    var date: String { get }
+    var text: String? { get }
+    var likes: String? { get }
+    var comments: String? { get }
+    var shares: String? { get }
+    var views: String? { get }
+    var photoAttachments: [FeedCellPhotoAttachmentViewModel] { get }
+    var sizes: FeedCellSizes { get }
+}
+
+protocol FeedCellSizes {
+    var postLabelFrame: CGRect { get }
+    var attachmentFrame: CGRect { get }
+    var bottomViewFrame: CGRect { get }
+    var totalHeight: CGFloat { get }
+    var moreTextButtonFrame: CGRect { get }
+}
+
+protocol FeedCellPhotoAttachmentViewModel {
+    var photoUrlString: String? { get }
+    var width: Int { get }
+    var height: Int { get }
+}
+
 protocol NewsfeedCodeCellDelegate: AnyObject {
     func revealPost(for cell: NewsfeedCodeCell)
 }
@@ -59,6 +86,10 @@ final class NewsfeedCodeCell: UITableViewCell {
         
         backgroundColor = .clear
         selectionStyle = .none
+        layer.shadowColor = UIColor.black.cgColor
+        layer.shadowOpacity = 0.3
+        layer.shadowOffset = .zero
+        layer.shadowRadius = 4
         
         cardView.layer.cornerRadius = 10
         cardView.clipsToBounds = true

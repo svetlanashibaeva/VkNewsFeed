@@ -38,6 +38,8 @@ enum Newsfeed {
 
 struct UserViewModel: TitleViewViewModel {
     var photoUrlString: String?
+    var firstName: String?
+    var lastName: String?
 }
 
 struct FeedViewModel {

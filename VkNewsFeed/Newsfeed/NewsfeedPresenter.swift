@@ -40,7 +40,7 @@ class NewsfeedPresenter: NewsfeedPresentationLogic {
             let feedViewModel = FeedViewModel(cells: cells, footerTitle: footerTitle)
             viewController?.displayData(viewModel: .displayNewsfeed(feedViewModel: feedViewModel))
         case .presentUserInfo(user: let user):
-            let userViewModel = UserViewModel.init(photoUrlString: user?.photo100)
+            let userViewModel = UserViewModel.init(photoUrlString: user?.photo100, firstName: user?.firstName, lastName: user?.lastName)
             viewController?.displayData(viewModel: .displayUser(userViewModel: userViewModel))
         case .presentFooterLoader:
             viewController?.displayData(viewModel: .diaplayFooterLoader)
