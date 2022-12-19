@@ -7,10 +7,10 @@
 
 import UIKit
 
-class FooterView: UIView {
+final class FooterView: UIView {
     
-    let myLabel = UILabel()
-    let loader = UIActivityIndicatorView()
+    private let myLabel = UILabel()
+    private let loader = UIActivityIndicatorView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -35,6 +35,7 @@ class FooterView: UIView {
 }
 
 private extension FooterView {
+    
     func configure() {
         myLabel.font = UIFont.systemFont(ofSize: 13)
         myLabel.textColor = .lightGray
@@ -51,7 +52,13 @@ private extension FooterView {
     }
     
     func makeConstraints() {
-        myLabel.anchor(top: topAnchor, leading: leadingAnchor, bottom: nil, trailing: trailingAnchor, padding: UIEdgeInsets(top: 8, left: 20, bottom: 777, right: 20))
+        myLabel.anchor(
+            top: topAnchor,
+            leading: leadingAnchor,
+            bottom: nil,
+            trailing: trailingAnchor,
+            padding: UIEdgeInsets(top: 8, left: 20, bottom: 777, right: 20)
+        )
         
         loader.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         loader.topAnchor.constraint(equalTo: myLabel.bottomAnchor, constant: 8).isActive = true

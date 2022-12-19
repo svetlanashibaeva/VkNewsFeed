@@ -13,16 +13,14 @@ protocol TitleViewViewModel {
     var lastName: String? { get }
 }
 
-class TitleView: UIView {
+final class TitleView: UIView {
     
-    let myNameLabel = UILabel()
-    let myAvatarView = WebImageView()
+    private let myNameLabel = UILabel()
+    private let myAvatarView = WebImageView()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        translatesAutoresizingMaskIntoConstraints = false
-
         configure()
         addSubviews()
         makeConstraints()
@@ -51,6 +49,7 @@ class TitleView: UIView {
 }
 
 private extension TitleView {
+    
     func configure() {
         myNameLabel.translatesAutoresizingMaskIntoConstraints = false
         myNameLabel.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
@@ -67,7 +66,6 @@ private extension TitleView {
     }
     
     func makeConstraints() {
-        
         //myAvatar constraints
         myAvatarView.anchor(
             top: topAnchor,

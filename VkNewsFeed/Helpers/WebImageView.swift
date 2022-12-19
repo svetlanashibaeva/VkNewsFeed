@@ -14,11 +14,11 @@ class WebImageView: UIImageView {
     func set(imageURL: String?) {
         currentUrlString = imageURL
         guard let imageURL = imageURL, let url = URL(string: imageURL) else {
-            self.image = nil
+            image = nil
             return }
         
         if let cachedResponse = URLCache.shared.cachedResponse(for: URLRequest(url: url)) {
-            self.image = UIImage(data: cachedResponse.data)
+            image = UIImage(data: cachedResponse.data)
             return
         }
         
@@ -37,7 +37,7 @@ class WebImageView: UIImageView {
         URLCache.shared.storeCachedResponse(cachedResponse, for: URLRequest(url: responseUrl))
         
         if responseUrl.absoluteString == currentUrlString {
-            self.image = UIImage(data: data)
+            image = UIImage(data: data)
         }
     }
 }

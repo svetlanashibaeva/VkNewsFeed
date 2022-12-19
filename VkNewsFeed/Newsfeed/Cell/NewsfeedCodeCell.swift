@@ -45,60 +45,40 @@ final class NewsfeedCodeCell: UITableViewCell {
     weak var delegate: NewsfeedCodeCellDelegate?
     
     // первый слой
-    let cardView = UIView()
+    private let cardView = UIView()
     
     // второй слой
-    let topView = UIView()
-    let postLabel = UITextView()
-    let postImageView = WebImageView()
-    let bottomView = UIView()
-    let moreTextButton = UIButton()
-    let galleryCollectionView = GalleryCollectionView()
+    private let topView = UIView()
+    private let postLabel = UITextView()
+    private let postImageView = WebImageView()
+    private let bottomView = UIView()
+    private let moreTextButton = UIButton()
+    private let galleryCollectionView = GalleryCollectionView()
     
     // третий слой на topView
-    let iconImageView = WebImageView()
-    let nameLabel = UILabel()
-    let dateLabel = UILabel()
+    private let iconImageView = WebImageView()
+    private let nameLabel = UILabel()
+    private let dateLabel = UILabel()
     
     // третий слой на bottomView
-    let likesView = UIView()
-    let commentsView = UIView()
-    let sharesView = UIView()
-    let viewsView = UIView()
+    private let likesView = UIView()
+    private let commentsView = UIView()
+    private let sharesView = UIView()
+    private let viewsView = UIView()
     
     // четвертый слой на bottomView
-    let likesImage = UIImageView()
-    let commentsImage = UIImageView()
-    let sharesImage = UIImageView()
-    let viewsImage = UIImageView()
-    let likesLabel = UILabel()
-    let commentsLabel = UILabel()
-    let sharesLabel = UILabel()
-    let viewsLabel = UILabel()
-    
-    override func prepareForReuse() {
-        iconImageView.set(imageURL: nil)
-        postImageView.set(imageURL: nil)
-    }
+    private let likesImage = UIImageView()
+    private let commentsImage = UIImageView()
+    private let sharesImage = UIImageView()
+    private let viewsImage = UIImageView()
+    private let likesLabel = UILabel()
+    private let commentsLabel = UILabel()
+    private let sharesLabel = UILabel()
+    private let viewsLabel = UILabel()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
-        backgroundColor = .clear
-        selectionStyle = .none
-        layer.shadowColor = UIColor.black.cgColor
-        layer.shadowOpacity = 0.3
-        layer.shadowOffset = .zero
-        layer.shadowRadius = 4
-        
-        cardView.layer.cornerRadius = 10
-        cardView.clipsToBounds = true
-        
-        iconImageView.layer.cornerRadius = Constants.topViewHeight / 2
-        iconImageView.clipsToBounds = true
-        
-        moreTextButton.addTarget(self, action: #selector(moreTextButtonTouch), for: .touchUpInside)
-        
+  
         configure()
         addSubviews()
         makeConstraints()
@@ -110,6 +90,11 @@ final class NewsfeedCodeCell: UITableViewCell {
     
     @objc func moreTextButtonTouch() {
         delegate?.revealPost(for: self)
+    }
+    
+    override func prepareForReuse() {
+        iconImageView.set(imageURL: nil)
+        postImageView.set(imageURL: nil)
     }
     
     func set(viewModel: FeedCellViewModel) {
@@ -144,8 +129,18 @@ final class NewsfeedCodeCell: UITableViewCell {
 }
 
 private extension NewsfeedCodeCell {
+    
     func configure() {
+        backgroundColor = .clear
+        selectionStyle = .none
+        layer.shadowColor = UIColor.black.cgColor
+        layer.shadowOpacity = 0.3
+        layer.shadowOffset = .zero
+        layer.shadowRadius = 4
+        
         cardView.backgroundColor = .white
+        cardView.layer.cornerRadius = 10
+        cardView.clipsToBounds = true
         
         postLabel.isScrollEnabled = false
         postLabel.isSelectable = true
@@ -156,6 +151,9 @@ private extension NewsfeedCodeCell {
         postLabel.textColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
         let padding = postLabel.textContainer.lineFragmentPadding
         postLabel.textContainerInset = UIEdgeInsets(top: 0, left: -padding, bottom: 0, right: -padding)
+        
+        iconImageView.layer.cornerRadius = Constants.topViewHeight / 2
+        iconImageView.clipsToBounds = true
         
         nameLabel.font = UIFont.systemFont(ofSize: 14, weight: .medium)
         nameLabel.numberOfLines = 0
@@ -186,6 +184,7 @@ private extension NewsfeedCodeCell {
         viewsLabel.font = UIFont.systemFont(ofSize: 14, weight: .medium)
         viewsLabel.lineBreakMode = .byClipping
         
+        moreTextButton.addTarget(self, action: #selector(moreTextButtonTouch), for: .touchUpInside)
         moreTextButton.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: .medium)
         moreTextButton.setTitleColor(.blue, for: .normal)
         moreTextButton.contentHorizontalAlignment = .left
@@ -310,3 +309,16 @@ private extension NewsfeedCodeCell {
     }
 }
  
+private extension NewsfeedCodeCell {
+    
+    struct Constants {
+        static let cardInsets = UIEdgeInsets(top: 0, left: 8, bottom: 12, right: 8)
+        static let topViewHeight: CGFloat = 36
+        static let postLabelFont = UIFont.systemFont(ofSize: 15)
+        
+        static let bottomViewViewHeight: CGFloat = 44
+        static let bottomViewViewWidth: CGFloat = 80
+        
+        static let bottomViewViewsIconSize: CGFloat = 24
+    }
+}

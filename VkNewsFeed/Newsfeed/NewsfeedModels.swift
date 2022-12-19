@@ -19,6 +19,7 @@ enum Newsfeed {
                 case getNextBatch
             }
         }
+        
         struct Response {
             enum ResponseType {
                 case presentNewsfeed(feed: FeedResponse, revealedPostIds: [Int])
@@ -26,6 +27,7 @@ enum Newsfeed {
                 case presentFooterLoader
             }
         }
+        
         struct ViewModel {
             enum ViewModelData {
                 case displayNewsfeed(feedViewModel: FeedViewModel)

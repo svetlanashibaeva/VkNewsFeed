@@ -8,6 +8,7 @@
 import UIKit
 
 extension String {
+    
     func height(width: CGFloat, font: UIFont) -> CGFloat {
         let textSize = CGSize(width: width, height: .greatestFiniteMagnitude)
         let size = self.boundingRect(

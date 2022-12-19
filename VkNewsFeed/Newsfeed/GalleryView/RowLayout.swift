@@ -11,17 +11,16 @@ protocol RowLayoutDelegate: AnyObject {
     func collectionView(_ collectionView: UICollectionView, photoAtIndexPath indexPath: IndexPath) -> CGSize
 }
 
-class RowLayout: UICollectionViewFlowLayout {
-    
-    weak var delegate: RowLayoutDelegate!
+final class RowLayout: UICollectionViewFlowLayout {
     
     static var numberOfRows = 1
-    fileprivate var cellPadding: CGFloat = 8
     
-    fileprivate var cache = [UICollectionViewLayoutAttributes]()
-    
-    fileprivate var contentWidth: CGFloat = 0
-    fileprivate var contentHeigth: CGFloat {
+    weak var delegate: RowLayoutDelegate!
+
+    private var cellPadding: CGFloat = 8
+    private var cache = [UICollectionViewLayoutAttributes]()
+    private var contentWidth: CGFloat = 0
+    private var contentHeigth: CGFloat {
         guard let collectionView = collectionView else { return 0 }
         let insets = collectionView.contentInset
         return collectionView.bounds.height - (insets.left + insets.right)
@@ -34,7 +33,7 @@ class RowLayout: UICollectionViewFlowLayout {
     override func prepare() {
         contentWidth = 0
         cache = []
-        guard cache.isEmpty == true, let collectionView = collectionView else { return }
+        guard cache.isEmpty, let collectionView = collectionView else { return }
         
         var photos = [CGSize]()
         for item in 0 ..< collectionView.numberOfItems(inSection: 0) {

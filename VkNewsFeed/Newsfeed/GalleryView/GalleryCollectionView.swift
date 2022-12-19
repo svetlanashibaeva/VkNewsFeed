@@ -7,9 +7,9 @@
 
 import UIKit
 
-class GalleryCollectionView: UICollectionView {
+final class GalleryCollectionView: UICollectionView {
     
-    var photos = [FeedCellPhotoAttachmentViewModel]()
+    private var photos = [FeedCellPhotoAttachmentViewModel]()
     
     init() {
         let rowLayout = RowLayout()
@@ -41,6 +41,7 @@ class GalleryCollectionView: UICollectionView {
 }
 
 extension GalleryCollectionView: UICollectionViewDataSource, UICollectionViewDelegate {
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return photos.count
     }
@@ -53,12 +54,14 @@ extension GalleryCollectionView: UICollectionViewDataSource, UICollectionViewDel
 }
 
 extension GalleryCollectionView: UICollectionViewDelegateFlowLayout {
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: frame.width, height: frame.height)
     }
 }
 
 extension GalleryCollectionView: RowLayoutDelegate {
+    
     func collectionView(_ collectionView: UICollectionView, photoAtIndexPath indexPath: IndexPath) -> CGSize {
         return CGSize(width: photos[indexPath.row].width, height: photos[indexPath.row].height)
     }

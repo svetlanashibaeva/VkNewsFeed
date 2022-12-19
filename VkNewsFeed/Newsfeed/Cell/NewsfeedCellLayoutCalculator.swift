@@ -69,13 +69,6 @@ final class NewsfeedCellLayoutCalculator: FeedCellLayoutCalculatorProtocol {
             size: CGSize.zero
         )
         
-//        if let attachment = photoAttachment {
-//            let photoHeight: Float = Float(attachment.height)
-//            let photoWidth: Float = Float(attachment.width)
-//            let ratio = CGFloat(photoHeight / photoWidth)
-//            attachmentFrame.size = CGSize(width: cardViewWidth, height: cardViewWidth * ratio)
-//        }
-        
         if let attachment = photoAttachments.first {
             let photoHeight: Float = Float(attachment.height)
             let photoWidth: Float = Float(attachment.width)
@@ -108,6 +101,22 @@ final class NewsfeedCellLayoutCalculator: FeedCellLayoutCalculatorProtocol {
             totalHeight: totalHeight,
             moreTextButtonFrame: moreTextButtonFrame
         )
+    }
+}
+
+private extension NewsfeedCellLayoutCalculator {
+    
+    struct Constants {
+        static let cardInsets = UIEdgeInsets(top: 0, left: 8, bottom: 12, right: 8)
+        static let topViewHeight: CGFloat = 36
+        static let postLabelInsets = UIEdgeInsets(top: 8 + Constants.topViewHeight + 8, left: 8, bottom: 8, right: 8)
+        static let postLabelFont = UIFont.systemFont(ofSize: 15)
+        static let bottomViewHeight: CGFloat = 44
         
+        static let minifiedPostLimitLines: CGFloat = 8
+        static let minifiedPostLines: CGFloat = 6
+        
+        static let moreTextButtonSize = CGSize(width: 170, height: 30)
+        static let moreTextButtonInsets = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 0)
     }
 }

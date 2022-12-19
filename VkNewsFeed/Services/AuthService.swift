@@ -38,13 +38,12 @@ final class AuthService: NSObject {
     
     func wakeUpSession() {
         let scope = ["wall", "friends"]
-        VKSdk.wakeUpSession(scope) { state, error in
+        VKSdk.wakeUpSession(scope) { [weak self] state, error in
+            guard let self = self else { return }
             switch state {
             case .initialized:
-                print("initialized")
                 VKSdk.authorize(scope)
             case .authorized:
-                print("authorized")
                 self.delegate?.authServiceSignIn()
             default:
                 self.delegate?.authServiceSignInDidFail()
@@ -54,22 +53,21 @@ final class AuthService: NSObject {
 }
 
 extension AuthService: VKSdkDelegate {
+    
     func vkSdkAccessAuthorizationFinished(with result: VKAuthorizationResult!) {
-        print(#function)
         if result.token != nil {
             delegate?.authServiceSignIn()
         } 
     }
     
     func vkSdkUserAuthorizationFailed() {
-        print(#function)
         delegate?.authServiceSignInDidFail()
     }
 }
 
 extension AuthService: VKSdkUIDelegate {
+    
     func vkSdkShouldPresent(_ controller: UIViewController!) {
-        print(#function)
         delegate?.authServiceShouldShow(viewController: controller)
     }
     

@@ -7,25 +7,18 @@
 
 import UIKit
 
-class GalleryCollectionViewCell: UICollectionViewCell {
+final class GalleryCollectionViewCell: UICollectionViewCell {
     
     static let reuseId = "GalleryCollectionViewCell"
     
-    let myImageView: WebImageView = {
-        let imageView = WebImageView()
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.contentMode = .scaleAspectFill
-        imageView.backgroundColor = .lightGray
-        
-        return imageView
-    }()
+    private let myImageView = WebImageView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        addSubview(myImageView)
-        
-        myImageView.fillSuperview()
+        configure()
+        addSubviews()
+        makeConstraints()
     }
     
     required init?(coder: NSCoder) {
@@ -48,5 +41,22 @@ class GalleryCollectionViewCell: UICollectionViewCell {
         self.layer.shadowRadius = 3
         layer.shadowOpacity = 0.4
         layer.shadowOffset = CGSize(width: 2.5, height: 4)
+    }
+}
+
+private extension GalleryCollectionViewCell {
+    
+    func configure() {
+        myImageView.translatesAutoresizingMaskIntoConstraints = false
+        myImageView.contentMode = .scaleAspectFill
+        myImageView.backgroundColor = .lightGray
+    }
+    
+    func addSubviews() {
+        addSubview(myImageView)
+    }
+    
+    func makeConstraints() {
+        myImageView.fillSuperview()
     }
 }
