@@ -1,5 +1,5 @@
 # VkNewsFeed
-### Using Clean Swift architecture]
+### Using Clean Swift architecture
 ### Info about API and SDK: https://vk.com/dev
 
 ## Feed Screen:
